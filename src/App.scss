@@ -29,6 +29,21 @@ body,
   }
 }
 
+.products {
+  padding: 30px 50px;
+  display: flex;
+
+  .left {
+    flex: 1;
+    height: 100%;
+    top: 50px;
+  }
+
+  .right {
+    flex: 3;
+  }
+}
+
 a,
 a:visited,
 a:active {
