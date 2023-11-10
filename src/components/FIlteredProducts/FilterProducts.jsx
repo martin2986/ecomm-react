@@ -1,60 +1,49 @@
-import { useState } from "react";
 import classes from "./FilterProducts.module.scss";
+import Input from "../Input/Input";
+import { useDispatch } from "react-redux";
+import { appAction } from "../../store/app";
 const FilterProducts = () => {
-  const [maxPrice, setMaxPrice] = useState(0);
-  const [sort, setSort] = useState("asc");
+  const dispatch = useDispatch();
+
+  const radioChange = (e) => {
+    dispatch(appAction.filteredProduct(e.target.value));
+  };
   return (
     <>
       <div className={classes.filteredItem}>
         <h2>Product Categories</h2>
-        <div className={classes.inputItem}>
-          <input type="checkbox" id="item1" value={1} />
-          <label htmlFor="item1">Item 1</label>
-        </div>
-        <div className={classes.inputItem}>
-          <input type="checkbox" id="item2" value={1} />
-          <label htmlFor="item2">Item 2</label>
-        </div>
-        <div className={classes.inputItem}>
-          <input type="checkbox" id="item3" value={1} />
-          <label htmlFor="item3">Item 3</label>
-        </div>
-      </div>
-      <div className={classes.filteredItem}>
-        <h2>Filter by price</h2>
-        <div className={classes.inputItem}>
-          <span>0</span>
-          <input
-            type="range"
-            min={0}
-            max={1000}
-            onChange={(e) => setMaxPrice(e.target.value)}
-          />
-          <span>{maxPrice}</span>
-        </div>
-      </div>
-      <div className={classes.filteredItem}>
-        <h2>Sort by</h2>
-        <div className={classes.inputItem}>
-          <input
-            type="radio"
-            id="asc"
-            value="asc"
-            name="price"
-            onChange={(e) => setSort("asc")}
-          />
-          <label htmlFor="asc">price (Lowest Price)</label>
-        </div>
-        <div className={classes.inputItem}>
-          <input
-            type="radio"
-            id="desc"
-            value="desc"
-            name="price"
-            onChange={(e) => setSort("desc")}
-          />
-          <label htmlFor="asc">price (Lowest Price)</label>
-        </div>
+        <Input
+          type="radio"
+          label="All"
+          id="all"
+          value="all"
+          name="list"
+          handleChange={radioChange}
+        />
+        <Input
+          type="radio"
+          label="Shoes"
+          id="item2"
+          value="shoes"
+          name="list"
+          handleChange={radioChange}
+        />
+        <Input
+          type="radio"
+          label="Jeans"
+          id="jeans"
+          value="jeans"
+          name="list"
+          handleChange={radioChange}
+        />
+        <Input
+          type="radio"
+          label="Tops"
+          id="item4"
+          value="tops"
+          name="list"
+          handleChange={radioChange}
+        />
       </div>
     </>
   );
