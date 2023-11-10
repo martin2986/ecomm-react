@@ -3,13 +3,15 @@ import classes from "./ProductItem.module.scss";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import SelectSize from "../SelectSize/SelectSize";
-
+import { cartAction } from "../../store/cart";
+import { useDispatch } from "react-redux";
 const ProductItem = ({ item }) => {
   const { id, title, price, img1, description, img2 } = item;
   const [selectedImg, setSelectedImg] = useState(0);
-  const images = [img1, img2];
   const [amount, setAmount] = useState(1);
   const [size, setSize] = useState("S");
+  const images = [img1, img2];
+  const dispatch = useDispatch();
 
   const selectHandler = (e) => {
     setSize(e.target.value);
@@ -18,6 +20,16 @@ const ProductItem = ({ item }) => {
   const submitHandler = (e) => {
     e.preventDefault();
 
+    dispatch(
+      cartAction.addItem({
+        id,
+        title,
+        price,
+        img1,
+        quantity: amount,
+        size,
+      })
+    );
     setAmount(1);
   };
   return (

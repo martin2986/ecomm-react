@@ -4,11 +4,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import classes from "./NavBar.module.scss";
+import Cart from "../Cart/Cart";
+import { useSelector } from "react-redux";
 const NavBar = () => {
   const [showCart, setShowCart] = useState(false);
+  const quantity = useSelector((state) => state.cart.totalQuantity);
 
-  const toggleCartHandler = () => {
-    setShowCart(!showCart);
+  const hideCartHandler = () => {
+    setShowCart(false);
   };
 
   return (
@@ -23,7 +26,7 @@ const NavBar = () => {
         </div>
         <div className={classes.right}>
           <div className={classes.item}>
-            <Link className={classes.link} href="products">
+            <Link className={classes.link} to="products">
               Women
             </Link>
           </div>
@@ -45,13 +48,17 @@ const NavBar = () => {
           <div className={classes.icons}>
             <SearchIcon />
             <FavoriteBorderOutlinedIcon />
-            <div onClick={toggleCartHandler} className={classes["cart-icon"]}>
+            <div
+              onClick={() => setShowCart(!showCart)}
+              className={classes["cart-icon"]}
+            >
               <ShoppingCartOutlinedIcon />
-              <span>0</span>
+              {quantity > 0 && <span>{quantity}</span>}
             </div>
           </div>
         </div>
       </div>
+      {showCart && <Cart onHideCart={hideCartHandler} />}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import classes from "./ProductsItems.module.scss";
 const ProductsItems = ({ data }) => {
   return (
     <div className={classes.list}>
-      {data.map((item) => (
+      {data?.map((item) => (
         <Card items={item} key={item.id} />
       ))}
     </div>

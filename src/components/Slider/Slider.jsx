@@ -23,9 +23,8 @@ const Slider = () => {
 
   useEffect(() => {
     auto();
-
     return () => clearInterval(slideInterVal);
-  }, [currentSlide]);
+  }, [currentSlide, slideInterVal]);
 
   return imgs.map(
     (img, id) =>
