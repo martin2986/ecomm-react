@@ -54,3 +54,21 @@
     }
   }
 }
+
+@media screen and (max-width: 40em) {
+  .footer {
+    margin: 1rem;
+    gap: 10px;
+
+    .top {
+      width: 100%;
+      flex-direction: column;
+    }
+    .bottom {
+      .right {
+        display: none;
+      }
+      width: 100%;
+    }
+  }
+}

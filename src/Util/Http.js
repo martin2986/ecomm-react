@@ -28,3 +28,35 @@ export const fetchProduct = async ({ id, signal }) => {
   }
   return response.json();
 };
+
+const options = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "dc8219f916mshd7403d6236967e7p14aaf7jsn591470712e90",
+    "X-RapidAPI-Host": "asos2.p.rapidapi.com",
+  },
+};
+
+export const fetchAsos = async () => {
+  const response = await fetch(
+    "https://asos2.p.rapidapi.com/products/v2/list?store=US&offset=0&categoryId=4209&limit=48&country=US&sort=freshness&currency=USD&sizeSchema=US&lang=en-US",
+    options
+  );
+
+  if (!response.ok) {
+    return json({ message: "Could not find Products...." }, { status: 500 });
+  }
+  return response.json();
+};
+
+export const fetchAsosProduct = async (id) => {
+  const response = await fetch(
+    `https://asos2.p.rapidapi.com/products/v3/detail?id=${id}&lang=en-US&store=US&sizeSchema=US&currency=USD`,
+    options
+  );
+
+  if (!response.ok) {
+    return json({ message: "Could not find Products...." }, { status: 500 });
+  }
+  return response.json();
+};

@@ -1,9 +1,16 @@
 .filteredItem {
   margin-bottom: 30px;
+  width: 200px;
 
   h2 {
-    font-weight: 400;
+    font-weight: 500;
     margin-bottom: 20px;
+    font-size: 20px;
+  }
+  .wrapper,
+  h4 {
+    margin-bottom: 1rem;
+    font-size: 18px;
   }
 
   .inputItem {

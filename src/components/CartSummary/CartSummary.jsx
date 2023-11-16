@@ -1,32 +1,27 @@
 import React from "react";
 import classes from "./CartSummary.module.scss";
 import Buttons from "../Buttons/Buttons";
-import { Link } from "react-router-dom";
+import LinkButton from "../Buttons/LinkButton";
+import { SummaryItem } from "./SummaryItem";
+import Input from "../Input/Input";
 const CartSummary = ({ totalAmount }) => {
   const delivery = 13;
   const total = totalAmount + delivery;
   return (
     <div className={classes.summary}>
-      <div className={classes.items}>
-        <p>Order Summary</p>
-        <p>${totalAmount}</p>
-      </div>
-      <div className={classes.items}>
-        <p>Delivery</p>
-        <p>${delivery}</p>
-      </div>
-      <div className={classes.items}>
-        <h4>Total</h4>
-        <p>${total}</p>
-      </div>
-      <Link to="/checkout">
-        <Buttons title="GO TO CHECKOUT" type="button" />
-      </Link>
-      <div>
-        <label htmlFor="discount">Apply discount (Optional)</label>
-        <input type="text" id="discount" placeholder="Discount code" />
-      </div>
-      <Buttons title="Apply" name="btnSmall" type="button" className="btn" />
+      <SummaryItem title="Order Summary" totalAmount={totalAmount} />
+      <SummaryItem title="Delivery" totalAmount={delivery} />
+      <SummaryItem totalTitle="Total" totalAmount={total} />
+      <LinkButton to="/checkout" title="GO TO CHECKOUT" />
+      <Input
+        title=""
+        label="Apply discount (Optional)"
+        id="discount"
+        placeholder="Discount Code"
+        type="text"
+      />
+
+      <Buttons title="Apply" name="btnSmall" className="btn" />
     </div>
   );
 };

@@ -1,20 +1,21 @@
 import { Link } from "react-router-dom";
 import classes from "./Card.module.scss";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-const Card = ({ items }) => {
+const Card = ({ imageUrl: img, name: title, price, id, productCode }) => {
+  const { current } = price;
+  const newPrice = current.value;
   return (
-    <Link className={classes.link} to={items.id}>
+    <Link className={classes.link} to={id.toString()}>
       <div className={classes.card}>
         <div className={classes.image}>
-          {items.isNew && <span>New Season</span>}
-          <img src={items?.img1} alt="mainImg" />
+          <img src={`https://${img}`} alt="mainImg" />
         </div>
         <div className={classes.title}>
-          <h2>{items.title}</h2>
+          <h2>{title}</h2>
           <FavoriteBorderOutlinedIcon className={classes.icon} />
         </div>
-        <div className={classes.price}>
-          <h3>${items.price}</h3>
+        <div className={classes.prices}>
+          <h3>${newPrice}</h3>
         </div>
       </div>
     </Link>

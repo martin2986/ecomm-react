@@ -1,13 +1,15 @@
 import React from "react";
 import classes from "./Buttons.module.scss";
-const Buttons = (props) => {
+const Buttons = ({ type, name, title, onClickHandler, value }) => {
   return (
     <button
-      type={props.type}
-      name={props.name}
-      className={props.name === "btnSmall" ? classes.btnSmall : classes.btns}
+      onClick={onClickHandler}
+      type={type}
+      name={name}
+      className={name === "btnSmall" ? classes.btnSmall : classes.btns}
+      value={value}
     >
-      {props.title}
+      {title}
     </button>
   );
 };

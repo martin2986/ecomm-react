@@ -1,38 +1,28 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 import classes from "./Cart.module.scss";
-import Buttons from "../Buttons/Buttons";
 import Modal from "../../UI/Modal";
 import { useSelector } from "react-redux";
+import LinkButton from "../Buttons/LinkButton";
 const Cart = (props) => {
   const cartItems = useSelector((state) => state.cart.items);
-
   const totalPrice = useSelector((state) => state.cart.totalAmount);
-
   const isItems = cartItems.length > 0;
+
   return (
     <Modal onHideCart={props.onHideCart}>
       <div className={classes.cart}>
         <div className={classes.left}>
           {!isItems && (
             <div className={classes.cartBtn}>
-              <Link to="products">
-                <Buttons title="Start Shopping" />
-              </Link>
-              <Link to="products">
-                <Buttons title="Login" />
-              </Link>
+              <LinkButton to="/" title="Start Shopping" />
+              <LinkButton to="/" title="Login" />
             </div>
           )}
           {isItems && (
             <div className={classes.cartBtn}>
-              <Link to="cart">
-                <Buttons title="View bag" />
-              </Link>
-              <Link to="checkout">
-                <Buttons title="Checkout" />
-              </Link>
+              <LinkButton to="cart" title="View bag" />
+              <LinkButton to="checkout" title="Checkout" />
             </div>
           )}
           {!isItems && (
@@ -41,7 +31,7 @@ const Cart = (props) => {
             </h4>
           )}
           {cartItems.map((item) => (
-            <CartItem item={item} key={item.id} />
+            <CartItem {...item} key={item.id} />
           ))}
           {isItems && (
             <div className={classes.total}>
