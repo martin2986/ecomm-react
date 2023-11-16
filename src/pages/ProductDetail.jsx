@@ -1,15 +1,15 @@
-import ProductItem from "../components/ProductItem/ProductItem";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { fetchProduct } from "../Util/Http";
+import ProductItem from "../components/ProductItem/ProductItem";
 import LoadingIndicator from "../UI/LoadingIndicator";
+import { fetchAsosProduct } from "../Util/Http";
 const ProductDetail = () => {
   const params = useParams();
   const { id } = params;
 
   const { data, isLoading } = useQuery({
-    queryKey: ["products", id],
-    queryFn: ({ signal }) => fetchProduct({ id, signal }),
+    queryKey: ["asos", id],
+    queryFn: () => fetchAsosProduct(id),
     enabled: id !== undefined,
   });
 
@@ -24,7 +24,7 @@ const ProductDetail = () => {
   }
 
   if (data) {
-    content = <ProductItem item={data} />;
+    content = <ProductItem {...data} />;
   }
   return <>{content}</>;
 };

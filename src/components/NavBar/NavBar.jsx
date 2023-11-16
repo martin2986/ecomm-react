@@ -1,53 +1,45 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import classes from "./NavBar.module.scss";
-import Cart from "../Cart/Cart";
+import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import Cart from "../Cart/Cart";
+import classes from "./NavBar.module.scss";
 const NavBar = () => {
   const [showCart, setShowCart] = useState(false);
   const quantity = useSelector((state) => state.cart.totalQuantity);
 
+  const navRef = useRef();
+
   const hideCartHandler = () => {
     setShowCart(false);
   };
-
   return (
-    <div className={classes.navbar}>
-      <div className={classes.navWrapper}>
-        <div className={classes.left}>
-          <div className={classes.item}>
-            <Link className={classes.link} href="/">
-              Store
+    <>
+      <nav className={classes.navbar}>
+        <h2>
+          <Link className={classes.link} to="/">
+            Yourstore
+          </Link>
+        </h2>
+
+        <div ref={navRef} className={classes.right}>
+          <div className={classes.items}>
+            <Link className={classes.link} to="/">
+              Products
             </Link>
           </div>
-        </div>
-        <div className={classes.right}>
-          <div className={classes.item}>
-            <Link className={classes.link} to="products">
-              Women
-            </Link>
-          </div>
-          <div className={classes.item}>
-            <Link className={classes.link} to="products">
-              Kids
-            </Link>
-          </div>
-          <div className={classes.item}>
-            <Link className={classes.link} to="products">
-              Beauty
-            </Link>
-          </div>
-          <div className={classes.item}>
-            <Link className={classes.link} to="products">
-              Men
-            </Link>
-          </div>
+
           <div className={classes.icons}>
-            <SearchIcon />
-            <FavoriteBorderOutlinedIcon />
+            <form>
+              <input type="search" required />
+              <SearchIcon className=" searchIcon" />
+            </form>
+            <Link to="favourite">
+              <FavoriteBorderOutlinedIcon />
+            </Link>
+
             <div
               onClick={() => setShowCart(!showCart)}
               className={classes["cart-icon"]}
@@ -57,9 +49,9 @@ const NavBar = () => {
             </div>
           </div>
         </div>
-      </div>
+      </nav>
       {showCart && <Cart onHideCart={hideCartHandler} />}
-    </div>
+    </>
   );
 };
 

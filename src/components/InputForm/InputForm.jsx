@@ -32,7 +32,7 @@ const InputForm = () => {
         <Form className={classes.form}>
           <div className={classes.formData}>
             <div>
-              <Field name="firstName" id="firstName" placeholder="Frist name" />
+              <Field name="firstName" id="firstName" placeholder="First name" />
               {errors.firstName && touched.firstName ? (
                 <div className={classes.error}>{errors.firstName}</div>
               ) : null}

@@ -16,18 +16,25 @@
 }
 
 .btnSmall {
-  background: inherit;
-  color: black;
-  width: 90px;
-  height: 35px;
-  border: 1px solid black;
-  margin-top: 1rem;
-  border-radius: 0.6rem;
+  background: transparent;
+  font-size: 15px;
+  font-weight: lighter;
+  border: 0.6px solid #ccc;
+  border-radius: 5px;
+  color: #323232;
+  cursor: pointer;
+  margin-right: 6px;
+  margin-bottom: 0.5rem;
+  padding: 10px 20px;
+  width: 100px;
+}
 
-  &:hover {
-    background-color: black;
-    color: white;
-    border: none;
-    transition: 400ms ease;
+@media screen and (max-width: 40em) {
+  .btnSmall {
+    &:hover {
+      transform: scale(1.1);
+      transition: 0.3ms ease-in-out;
+      border: 1px solid #ccc;
+    }
   }
 }

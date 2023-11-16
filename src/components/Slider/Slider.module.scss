@@ -15,6 +15,12 @@
   height: 300px;
   object-fit: cover;
   margin-bottom: 50px;
-  object-position: top;
+  object-position: 25% 60%;
   border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 40em) {
+  .slide {
+    width: 100%;
+  }
 }

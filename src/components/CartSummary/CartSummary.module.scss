@@ -17,5 +17,13 @@
     height: 35px;
     border: none;
     margin-top: 1rem;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 40em) {
+  .summary {
+    padding: 1rem;
+    width: 350px;
   }
 }

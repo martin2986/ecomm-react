@@ -1,19 +1,21 @@
-import { useState } from "react";
-import classes from "./ProductItem.module.scss";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import SelectSize from "../SelectSize/SelectSize";
-import { cartAction } from "../../store/cart";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-const ProductItem = ({ item }) => {
-  const { id, title, price, img1, description, img2 } = item;
+import { Link } from "react-router-dom";
+import { cartAction } from "../../store/cart";
+import SelectSize from "../SelectSize/SelectSize";
+import classes from "./ProductItem.module.scss";
+const ProductItem = ({ media, name: title, price, id, description }) => {
   const [selectedImg, setSelectedImg] = useState(0);
+  const [size, setSize] = useState("");
+  const { current } = price;
+  const newPrice = current.text;
+  const { images } = media;
+  const image = images.map((img) => img.url);
   const [amount, setAmount] = useState(1);
-  const [size, setSize] = useState("S");
-  const images = [img1, img2];
   const dispatch = useDispatch();
 
-  const selectHandler = (e) => {
+  const sizeHandler = (e) => {
     setSize(e.target.value);
   };
 
@@ -24,8 +26,8 @@ const ProductItem = ({ item }) => {
       cartAction.addItem({
         id,
         title,
-        price,
-        img1,
+        price: current.value,
+        img1: image[0],
         quantity: amount,
         size,
       })
@@ -36,36 +38,44 @@ const ProductItem = ({ item }) => {
     <div className={classes.product} id={id}>
       <div className={classes.productLeft}>
         <div className={classes.images}>
-          <img src={images[0]} alt="" onClick={(e) => setSelectedImg(0)} />
-          <img src={images[1]} alt="" onClick={(e) => setSelectedImg(1)} />
+          <img
+            src={`http://${image[0]}`}
+            alt=""
+            onClick={(e) => setSelectedImg(0)}
+          />
+          <img
+            src={`http://${image[1]}`}
+            alt=""
+            onClick={(e) => setSelectedImg(1)}
+          />
+          <img
+            src={`http://${image[2]}`}
+            alt=""
+            onClick={(e) => setSelectedImg(2)}
+          />
         </div>
         <div className={classes.mainImg}>
-          <img src={images[selectedImg]} alt="" />
+          <img src={`http://${image[selectedImg]}`} alt={title} />
         </div>
       </div>
       <div className={classes.productRight}>
         <h1>{title}</h1>
-        <span className={classes.price}> ${price}</span>
-        <p>{description}</p>
-        <div className={classes.wrapper}>
-          <div className={classes.select}>
-            <SelectSize size={size} onChange={selectHandler} />
-          </div>
+        <span className={classes.price}>{newPrice}</span>
 
-          <div className={classes.quantity}>
-            <button onClick={() => setAmount((prev) => prev - 1)}>-</button>
-            {amount}
-            <button onClick={() => setAmount((prev) => prev + 1)}>+</button>
-          </div>
+        <div className={classes.size}>
+          <SelectSize onChange={sizeHandler} />
         </div>
-        <button className={classes.add} onClick={submitHandler}>
-          <AddShoppingCartIcon /> ADD TO CART
-        </button>
-        <div className={classes.links}>
-          <div className={classes.item}>
-            <FavoriteBorderIcon /> ADD TO WISH LIST
-          </div>
+        <div className={classes.addItem}>
+          <button className={classes.add} onClick={submitHandler}>
+            ADD TO CART
+          </button>
         </div>
+        <div className={classes.item}>
+          <Link to="/favourite">
+            Favourite <FavoriteBorderIcon className={classes.icon} />
+          </Link>
+        </div>
+        <p dangerouslySetInnerHTML={{ __html: description }}></p>
       </div>
     </div>
   );

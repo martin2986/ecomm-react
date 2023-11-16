@@ -1,10 +1,10 @@
 import Card from "../Card/Card";
 import classes from "./ProductsItems.module.scss";
-const ProductsItems = ({ data }) => {
+const ProductsItems = ({ data, sephData }) => {
   return (
     <div className={classes.list}>
-      {data?.map((item) => (
-        <Card items={item} key={item.id} />
+      {sephData?.map((item) => (
+        <Card {...item} key={item.id} />
       ))}
     </div>
   );

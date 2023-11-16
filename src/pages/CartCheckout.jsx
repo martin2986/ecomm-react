@@ -14,7 +14,7 @@ const CartCheckout = () => {
         <div className="content">
           <div className="left">
             {cartItems.map((item) => (
-              <CartItem key={item.id} item={item} />
+              <CartItem {...item} key={item.id} />
             ))}
           </div>
           <div className="right">

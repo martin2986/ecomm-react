@@ -1,11 +1,11 @@
 import { appAction } from "./app";
-import { fetchProducts, queryClient } from "../Util/Http";
+import { fetchAsos, queryClient } from "../Util/Http";
 export const fetchProductsAction = () => {
   return async (dispatch) => {
     const fetchData = async () => {
       const data = await queryClient.fetchQuery({
-        queryKey: ["prod"],
-        queryFn: fetchProducts,
+        queryKey: ["asos"],
+        queryFn: fetchAsos,
         staleTime: 0,
       });
       return data;
@@ -13,7 +13,7 @@ export const fetchProductsAction = () => {
 
     try {
       const appData = await fetchData();
-      dispatch(appAction.setProducts(appData || []));
+      dispatch(appAction.setProducts(appData.products || []));
     } catch (err) {
       console.error(err);
     }
