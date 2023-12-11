@@ -2,14 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   products: [],
+  search: "",
 };
 
 const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    setProducts(state, action) {
-      state.products = action.payload;
+    searchInput(state, action) {
+      state.search = action.payload;
     },
   },
 });

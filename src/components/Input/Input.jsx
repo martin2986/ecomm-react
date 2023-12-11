@@ -1,22 +1,34 @@
 import React from "react";
 import classes from "./Input.module.scss";
-const Input = (props) => {
+const Input = ({
+  id,
+  handleChange,
+  type,
+  value,
+  name,
+  min,
+  max,
+  checked,
+  placeholder,
+  span,
+  title,
+}) => {
   return (
     <div className={classes.input}>
-      <label htmlFor={props.id}>
+      <label htmlFor={id}>
         <input
-          onChange={props.handleChange}
-          type={props.type}
-          id={props.id}
-          value={props.value}
-          name={props.name}
-          min={props.min}
-          max={props.max}
-          checked={props.checked}
-          placeholder={props.placeholder}
+          onChange={handleChange}
+          type={type}
+          id={id}
+          value={value}
+          name={name}
+          min={min}
+          max={max}
+          checked={checked}
+          placeholder={placeholder}
         />
-        <span className={props.span}></span>
-        {props.title}
+        <span className={span}></span>
+        {title}
       </label>
     </div>
   );

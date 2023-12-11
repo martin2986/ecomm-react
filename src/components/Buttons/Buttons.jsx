@@ -1,16 +1,34 @@
 import React from "react";
 import classes from "./Buttons.module.scss";
-const Buttons = ({ type, name, title, onClickHandler, value }) => {
+import { motion } from "framer-motion";
+const Buttons = ({
+  isActive,
+  type,
+  name,
+  title,
+  onClickHandler,
+  value,
+  totalAmount,
+  className,
+}) => {
   return (
-    <button
+    <motion.button
+      key={title}
       onClick={onClickHandler}
       type={type}
       name={name}
-      className={name === "btnSmall" ? classes.btnSmall : classes.btns}
       value={value}
+      className={`${
+        name === "btnSmall"
+          ? classes.btnSmall
+          : name === "btnSize"
+          ? classes.btnSize
+          : classes.btns
+      } ${value === isActive ? classes.active : className}`}
     >
       {title}
-    </button>
+      {totalAmount && ` (${totalAmount})`}
+    </motion.button>
   );
 };
 

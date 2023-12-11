@@ -1,8 +1,9 @@
+import { Container } from "react-bootstrap";
 import classes from "./Footer.module.scss";
 
 const Footer = () => {
   return (
-    <div className={classes.footer}>
+    <Container className={classes.footer}>
       <div className={classes.top}>
         <div className={classes.item}>
           <h1>About</h1>
@@ -33,7 +34,7 @@ const Footer = () => {
           <img src="/img/payment.png" alt="footer img" />
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

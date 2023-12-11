@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CartItem from "./CartItem";
 import classes from "./Cart.module.scss";
 import Modal from "../../UI/Modal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCartData } from "../../store/cart-actions";
 import LinkButton from "../Buttons/LinkButton";
 const Cart = (props) => {
   const cartItems = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalAmount);
   const isItems = cartItems.length > 0;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
 
   return (
     <Modal onHideCart={props.onHideCart}>
@@ -36,7 +42,7 @@ const Cart = (props) => {
           {isItems && (
             <div className={classes.total}>
               <span>TOTAL</span>
-              <span>${totalPrice}</span>
+              <span>${totalPrice.toFixed(2)}</span>
             </div>
           )}
         </div>
