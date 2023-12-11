@@ -1,24 +1,38 @@
-import { useIsFetching } from "@tanstack/react-query";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import FilterProducts from "../components/FIlteredProducts/FilterProducts";
 import Recommended from "../components/FIlteredProducts/Recommended/Recommended";
-import ProductsItems from "../components/ProductsItems/ProductsItems";
+import ProductsItems from "../components/Products/ProductsItems/ProductsItems";
 import Slider from "../components/Slider/Slider";
-import LoadingIndicator from "../UI/LoadingIndicator";
+import { Container } from "react-bootstrap";
+import { filteredData } from "../Util/HelperFn";
+import CardSkeleton from "../components/Skeleton/CardSkeleton";
+import { fetchProducts } from "../Util/Http";
+import Error from "../components/Error";
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const appState = useSelector((state) => state.products.products);
-  const isPending = useIsFetching({ queryKey: ["asos"] });
+  const query = useSelector((state) => state.products.search);
+
+  const { data, isPending, isError, error } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+    staleTime: 15,
+  });
 
   let content;
 
+  if (isError) {
+    <Error
+      message="Ops an error occured"
+      text={
+        error?.info.message || "Can't fetch product items, Please try again"
+      }
+    />;
+  }
+
   if (isPending) {
-    content = (
-      <div style={{ textAlign: "center" }}>
-        <LoadingIndicator />
-      </div>
-    );
+    content = <CardSkeleton cards={9} />;
   }
 
   const handleClick = (e) => {
@@ -29,42 +43,32 @@ const Products = () => {
     setSelectedCategory(e.target.value);
   };
 
-  function filteredData(appState, selected) {
-    let filteredProducts = appState;
+  const productItems = filteredData(data?.products, selectedCategory, query);
 
-    if (selected) {
-      filteredProducts = filteredProducts.filter(
-        ({ colour, brandName, price, name }) =>
-          brandName.includes(selected) ||
-          colour === selected ||
-          price.current.value.toString() === selected ||
-          name === selected
-      );
-    }
-
-    return filteredProducts;
+  if (productItems) {
+    content = <ProductsItems data={productItems} />;
   }
 
-  const result = filteredData(appState, selectedCategory);
+  useEffect(() => {
+    document.title = "Products";
 
-  if (result) {
-    content = <ProductsItems sephData={result} />;
-  } else if (!result) {
-    content = <h3>Currently out of Stock</h3>;
-  }
+    return () => {
+      document.title = "Ecomm Store";
+    };
+  }, []);
 
   return (
-    <div className="products">
-      <div className="left">
+    <Container className="d-flex flex-sm-column flex-md-row gap-1 w-100 mx-auto">
+      <div className="d-none d-md-block w-25">
         <FilterProducts handleChange={handleChange} />
       </div>
-
-      <div className="right">
+      <div className="w-100 ">
         <Slider />
         <Recommended handleClick={handleClick} />
+
         <div>{content}</div>
       </div>
-    </div>
+    </Container>
   );
 };
 

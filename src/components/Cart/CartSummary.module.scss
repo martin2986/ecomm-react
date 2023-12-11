@@ -1,6 +1,6 @@
 .summary {
   background-color: rgb(162, 169, 162);
-  width: 400px;
+  width: 35 + 5vw;
   padding: 2rem;
   border-radius: 1rem;
   height: 400px;
@@ -21,9 +21,9 @@
   }
 }
 
-@media screen and (max-width: 40em) {
+@media screen and (max-width: 28em) {
   .summary {
     padding: 1rem;
-    width: 350px;
+    width: 90 + 5vw;
   }
 }

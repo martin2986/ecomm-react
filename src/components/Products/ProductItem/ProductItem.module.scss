@@ -8,7 +8,6 @@
     flex: 3;
     display: flex;
     gap: 20px;
-    // border: 5px solid black;
     width: 100%;
 
     .images {
@@ -34,14 +33,14 @@
   }
 
   .productRight {
-    flex: 1;
+    flex: 0.5;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 10px;
     width: 100%;
 
     .size {
-      max-width: 450px;
+      max-width: 500px;
     }
 
     h1 {
@@ -93,10 +92,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 20px;
+        border-radius: 2rem;
         cursor: pointer;
         border: none;
         font-weight: 500;
+        &:hover {
+          background-color: darkgrey;
+          transition: 0.3ms ease-in;
+        }
       }
     }
     .item {
@@ -110,6 +113,10 @@
       border: 1px solid black;
       font-size: 16px;
       cursor: pointer;
+      &:hover {
+        background-color: rgb(219, 218, 218);
+        transition: 0.3ms ease-in;
+      }
 
       .icon {
         font-size: 12px;
@@ -138,6 +145,7 @@
 }
 @media screen and (max-width: 40em) {
   .product {
+    overflow: hidden;
     padding: 1rem;
     flex-direction: column;
 
@@ -155,6 +163,17 @@
       h1 {
         font-size: 18px;
         width: 100%;
+      }
+      p {
+        max-width: 350px;
+        padding-left: 0.5rem;
+        font-size: 15px;
+        a {
+          font-size: 15px;
+        }
+        li {
+          margin-bottom: 0.3rem;
+        }
       }
 
       .quantity {

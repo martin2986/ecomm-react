@@ -1,37 +1,59 @@
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { cartAction } from "../../store/cart";
-import SelectSize from "../SelectSize/SelectSize";
+import { cartAction } from "../../../store/cart";
+import SelectSize from "../../FIlteredProducts/SelectSize/SelectSize";
 import classes from "./ProductItem.module.scss";
-const ProductItem = ({ media, name: title, price, id, description }) => {
+
+import CartNotification from "../../Cart/CartNotification";
+
+const ProductItem = ({
+  media,
+  name: title,
+  price,
+  id,
+  description,
+  variants,
+}) => {
+  const { current } = price;
+  const { images } = media;
   const [selectedImg, setSelectedImg] = useState(0);
   const [size, setSize] = useState("");
-  const { current } = price;
-  const newPrice = current.text;
-  const { images } = media;
+  const [isActive, setIsActive] = useState("");
   const image = images.map((img) => img.url);
   const [amount, setAmount] = useState(1);
+  const [showNotification, setShowNotification] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.title = title;
+
+    return () => {
+      document.title = "Ecomm Store";
+    };
+  }, [title]);
 
   const sizeHandler = (e) => {
     setSize(e.target.value);
+    setIsActive(e.target.value);
   };
 
+  const items = {
+    id,
+    title,
+    price: current.value,
+    img1: image[0],
+    quantity: amount,
+    size,
+  };
+  const closeCartNotificationHandler = () => {
+    setShowNotification((prev) => !prev);
+  };
   const submitHandler = (e) => {
     e.preventDefault();
-
-    dispatch(
-      cartAction.addItem({
-        id,
-        title,
-        price: current.value,
-        img1: image[0],
-        quantity: amount,
-        size,
-      })
-    );
+    dispatch(cartAction.addItem(items));
+    setShowNotification(true);
     setAmount(1);
   };
   return (
@@ -59,11 +81,21 @@ const ProductItem = ({ media, name: title, price, id, description }) => {
         </div>
       </div>
       <div className={classes.productRight}>
-        <h1>{title}</h1>
-        <span className={classes.price}>{newPrice}</span>
+        {showNotification && (
+          <CartNotification
+            {...items}
+            onHideCart={closeCartNotificationHandler}
+          />
+        )}
+        <h4 className="mb-0 lh-small fw-medium">{title}</h4>
+        <span className="fs-5">${current.value}</span>
 
         <div className={classes.size}>
-          <SelectSize onChange={sizeHandler} />
+          <SelectSize
+            size={variants}
+            onChange={sizeHandler}
+            isActive={isActive}
+          />
         </div>
         <div className={classes.addItem}>
           <button className={classes.add} onClick={submitHandler}>

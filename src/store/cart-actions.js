@@ -1,5 +1,5 @@
 import { cartAction } from "./cart";
-
+const defaultCartState = 0;
 export const fetchCartData = () => {
   return async (dispatch) => {
     const fetchData = async () => {
@@ -20,8 +20,8 @@ export const fetchCartData = () => {
       dispatch(
         cartAction.updateCart({
           items: cartData.items || [],
-          totalQuantity: cartData.totalQuantity,
-          totalAmount: cartData.totalAmount,
+          totalQuantity: cartData.totalQuantity || defaultCartState,
+          totalAmount: cartData.totalAmount || defaultCartState,
         })
       );
     } catch (error) {

@@ -1,18 +1,16 @@
 .cartItem {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1rem;
 
   img {
     width: 100px;
-    height: 150px;
+    height: 120px;
     object-fit: cover;
   }
 
   .details {
     display: flex;
     flex-direction: column;
-    width: 300px;
     p {
       font-size: 14px;
       margin-bottom: 1rem;
