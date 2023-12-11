@@ -1,0 +1,14 @@
+.accordion {
+  width: 35 + 5vw;
+  .item {
+    .accordion-header button {
+      background-color: transparent;
+      box-shadow: none;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.payment {
+  width: 35 + 5vw;
+}

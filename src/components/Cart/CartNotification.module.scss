@@ -1,0 +1,52 @@
+.notification {
+  position: fixed;
+  width: 350px;
+  right: 10px;
+  top: 60px;
+  z-index: 999;
+  background-color: white;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+
+    .checked {
+      color: rgba(38, 200, 133, 255);
+    }
+
+    h5 {
+      margin-bottom: 1rem;
+      font-size: 15px;
+    }
+    .close {
+      cursor: pointer;
+
+      &:hover {
+        scale: 1.2;
+      }
+    }
+  }
+
+  .cartBtn {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  button {
+    display: flex;
+    width: 150px;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    background-color: black;
+    color: white;
+    font-weight: 500;
+  }
+}
