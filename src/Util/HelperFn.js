@@ -19,3 +19,10 @@ export function filteredData(appState, selected, query) {
   }
   return filteredProducts;
 }
+
+export function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}

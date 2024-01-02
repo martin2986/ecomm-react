@@ -4,7 +4,7 @@ const ProductsItems = ({ data }) => {
   return (
     <Row>
       {data?.map((item) => (
-        <Col md={4} key={item.id}>
+        <Col xs={6} sm={4} lg={3} key={item.id}>
           <Card {...item} />
         </Col>
       ))}

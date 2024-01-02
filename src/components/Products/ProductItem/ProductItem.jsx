@@ -7,6 +7,7 @@ import SelectSize from "../../FIlteredProducts/SelectSize/SelectSize";
 import classes from "./ProductItem.module.scss";
 
 import CartNotification from "../../Cart/CartNotification";
+import { Container } from "react-bootstrap";
 
 const ProductItem = ({
   media,
@@ -57,7 +58,7 @@ const ProductItem = ({
     setAmount(1);
   };
   return (
-    <div className={classes.product} id={id}>
+    <Container className={classes.product} id={id}>
       <div className={classes.productLeft}>
         <div className={classes.images}>
           <img
@@ -87,7 +88,7 @@ const ProductItem = ({
             onHideCart={closeCartNotificationHandler}
           />
         )}
-        <h4 className="mb-0 lh-small fw-medium">{title}</h4>
+        <h4 className="mb-0 lh-small fw-medium text-wrap ">{title}</h4>
         <span className="fs-5">${current.value}</span>
 
         <div className={classes.size}>
@@ -109,7 +110,7 @@ const ProductItem = ({
         </div>
         <p dangerouslySetInnerHTML={{ __html: description }}></p>
       </div>
-    </div>
+    </Container>
   );
 };
 

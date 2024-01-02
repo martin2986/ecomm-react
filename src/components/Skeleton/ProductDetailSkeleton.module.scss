@@ -3,7 +3,6 @@
   flex-direction: row;
   width: 100vw;
   height: 100vh;
-  //   padding: 20px 50px;
   .left {
     width: 3 + 6vw;
     height: 3 + 6vw;
@@ -31,23 +30,25 @@
   }
 }
 
-@media screen and (max-width: 30em) {
+@media screen and (max-width: 48em) {
   .detail {
     flex-direction: column;
     .leftSkeleton {
-      width: 85 + 6vw;
-      height: 90 + 6vw;
+      width: 90vw;
+      height: 400px;
+      max-height: 500px;
     }
     .rightWrapper {
       flex-direction: column;
       .right {
-        width: 85 + 6vw;
-        height: 10 + 6vw;
+        width: 100%;
+        height: 70px;
+        margin-bottom: 0.3rem;
       }
     }
     .btn {
-      width: 85 + 6vw;
-      height: 70px;
+      width: 100%;
+      height: 60px;
       margin-bottom: 1rem;
     }
   }

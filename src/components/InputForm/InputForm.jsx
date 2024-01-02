@@ -30,58 +30,57 @@ const InputForm = () => {
     >
       {({ errors, touched }) => (
         <Form className={classes.form}>
-          <div className={classes.formData}>
-            <div>
+          <div className=" d-md-block d-flex flex-row gap-3  ">
+            <div className="flex-grow-1 ">
               <Field name="firstName" id="firstName" placeholder="First name" />
               {errors.firstName && touched.firstName ? (
                 <div className={classes.error}>{errors.firstName}</div>
               ) : null}
             </div>
-            <div>
+            <div className="flex-grow-1 ">
               <Field name="lastName" id="lastName" placeholder="Last name" />
               {errors.lastName && touched.lastName ? (
                 <div className={classes.error}>{errors.lastName}</div>
               ) : null}
             </div>
           </div>
-          <div className={classes.formData}>
-            <div>
+          <div className="d-md-block d-flex flex-row gap-3 ">
+            <div className="flex-grow-1 ">
               <Field name="email" type="email" id="email" placeholder="Email" />
               {errors.email && touched.email ? (
                 <div className={classes.error}>{errors.email}</div>
               ) : null}
             </div>
 
-            <div>
+            <div className="flex-grow-1 ">
               <Field name="city" id="city" placeholder="City" />
               {errors.city && touched.city ? (
                 <div className={classes.error}>{errors.city}</div>
               ) : null}
             </div>
           </div>
-          {/* ---- */}
-          <div className={classes.formData}>
-            <div>
+          <div className="d-md-block d-flex flex-row gap-3 ">
+            <div className="flex-grow-1 ">
               <Field name="province" id="province" placeholder="Province" />
               {errors.province && touched.province ? (
                 <div className={classes.error}>{errors.province}</div>
               ) : null}
             </div>
-            <div>
+            <div className="flex-grow-1 ">
               <Field name="postal" id="postal" placeholder="Postal" />
               {errors.postal && touched.postal ? (
                 <div className={classes.error}>{errors.postal}</div>
               ) : null}
             </div>
           </div>
-          <div className={classes.formData}>
-            <div>
+          <div className="d-md-block d-flex flex-row gap-3 ">
+            <div className="flex-grow-1 ">
               <Field name="address" id="address" placeholder="Address" />
               {errors.address && touched.address ? (
                 <div className={classes.error}>{errors.address}</div>
               ) : null}
             </div>
-            <div>
+            <div className="flex-grow-1 ">
               <Field
                 name="address"
                 id="address"

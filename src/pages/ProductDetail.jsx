@@ -1,13 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import ProductItem from "../components/Products/ProductItem/ProductItem";
-import { fetchProductDetail } from "../Util/Http";
-import ProductDetailSkeleton from "../components/Skeleton/ProductDetailSkeleton";
 import Error from "../components/Error";
+import ProductItem from "../components/Products/ProductItem/ProductItem";
+import ProductDetailSkeleton from "../components/Skeleton/ProductDetailSkeleton";
+import { fetchProductDetail } from "../Util/Http";
 const ProductDetail = () => {
   const params = useParams();
   const { id } = params;
-  const { data, isLoading, isError, error } = useQuery({
+
+  const { data, isPending, isError, error } = useQuery({
     queryKey: ["detail", id],
     queryFn: () => fetchProductDetail(id),
     enabled: id !== undefined,
@@ -25,7 +26,7 @@ const ProductDetail = () => {
     );
   }
 
-  if (isLoading) {
+  if (isPending) {
     content = (
       <div style={{ textAlign: "center" }}>
         <ProductDetailSkeleton />
@@ -37,7 +38,7 @@ const ProductDetail = () => {
     content = <ProductItem {...data} />;
   }
 
-  return <>{content}</>;
+  return <div>{content}</div>;
 };
 
 export default ProductDetail;

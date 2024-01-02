@@ -16,10 +16,6 @@ export const fetchProducts = async () => {
     options
   );
 
-  if (response.data) {
-    localStorage.setItem("products", JSON.stringify(response.data));
-  }
-
   if (!response.data) {
     const error = new Error("Can't fetch products ! please try again");
     error.code = response.status;
@@ -35,10 +31,6 @@ export const fetchProductDetail = async (id) => {
     `https://asos2.p.rapidapi.com/products/v3/detail?id=${id}&lang=en-US&store=US&sizeSchema=US&currency=USD`,
     options
   );
-
-  if (response.data) {
-    localStorage.setItem("productItem", JSON.stringify(response.data));
-  }
 
   if (!response.data) {
     const error = new Error("Can't find this products ! please try again");

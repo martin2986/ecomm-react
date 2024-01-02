@@ -18,31 +18,33 @@ const Checkout = () => {
     };
   }, []);
   return (
-    <Container fluid>
-      <div className="w-100 d-flex flex-column flex-md-row vh-100">
-        <div className=" mx-auto">
+    <Container>
+      <div className="w-100 d-flex flex-column flex-md-row min-vh-100 ">
+        <div className="  flex-md-grow-1 my-3">
           <InputForm />
           <Payment />
         </div>
 
-        <div className=" px-3 h-50 d-flex flex-column justify-content-between">
+        <div className="flex-grow-1  px-3 vh-100 d-flex flex-column justify-content-between">
           {cartItems.length === 0 && (
             <h5 className="text-center mt-5">Your cart is empty</h5>
           )}
-          {cartItems.length > 0 && (
-            <>
-              <div className="">
-                {cartItems.map((item) => (
-                  <CartItem {...item} key={item.id} />
-                ))}
-              </div>
-              <div>
-                <h6>VAT: ${vat}</h6>
-                <h6>Total: ${total.toFixed(2)}</h6>
-                <Buttons title="Confirm Order" />
-              </div>
-            </>
-          )}
+          <div style={{ width: "450px" }} className="mx-auto">
+            {cartItems.length > 0 && (
+              <>
+                <div>
+                  {cartItems.map((item) => (
+                    <CartItem {...item} key={item.id} />
+                  ))}
+                </div>
+                <div>
+                  <h6>VAT: ${vat}</h6>
+                  <h6>Total: ${total.toFixed(2)}</h6>
+                  <Buttons title="Confirm Order" />
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </Container>

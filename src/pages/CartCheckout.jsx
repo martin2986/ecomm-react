@@ -17,7 +17,7 @@ const CartCheckout = () => {
   }, []);
 
   return (
-    <Container>
+    <Container className="vh-100">
       {!isItems && <h2 style={{ textAlign: "center" }}>Your Cart is Empty</h2>}
       {isItems && (
         <div className="d-flex flex-column flex-md-row gap-5 justify-content-between w-100 mx-auto">

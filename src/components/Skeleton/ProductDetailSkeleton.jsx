@@ -15,7 +15,10 @@ const ProductDetailSkeleton = () => {
         <div className={classes.rightWrapper}>
           <Skeleton count={4} className={classes.right} />
 
-          <Skeleton count={4} className={classes.right} />
+          <Skeleton
+            count={4}
+            className={`${classes.right} d-none d-lg-block`}
+          />
         </div>
 
         <div className=" mt-3">

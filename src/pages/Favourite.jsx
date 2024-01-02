@@ -11,10 +11,10 @@ const Favourite = () => {
     };
   }, []);
   return (
-    <Container className="text-center">
+    <Container className="w-100 text-center d-flex flex-column align-items-center ">
       <h2>You seem to be signed out! Login to save favourite</h2>
 
-      <div className="w-25 btn ">
+      <div className="w-25  ">
         <LinkButton to="/" title="Login" />
         <LinkButton to="/" title="Start Shopping" />
       </div>

@@ -3,7 +3,7 @@ import classes from "./Footer.module.scss";
 
 const Footer = () => {
   return (
-    <Container className={classes.footer}>
+    <Container fluid className={classes.footer}>
       <div className={classes.top}>
         <div className={classes.item}>
           <h1>About</h1>
