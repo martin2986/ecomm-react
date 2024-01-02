@@ -1,6 +1,7 @@
 .accordion {
-  width: 35 + 5vw;
+  width: 100%;
   .item {
+    width: 100%;
     .accordion-header button {
       background-color: transparent;
       box-shadow: none;
@@ -10,5 +11,5 @@
 }
 
 .payment {
-  width: 35 + 5vw;
+  width: 100%;
 }

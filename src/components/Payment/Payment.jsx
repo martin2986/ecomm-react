@@ -30,7 +30,7 @@ const Payment = () => {
           value="pos"
         />
       </div>
-      <div className="mt-4">{types === "online" && <Methods />}</div>
+      <div className="my-4">{types === "online" && <Methods />}</div>
     </div>
   );
 };

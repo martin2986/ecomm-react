@@ -37,6 +37,14 @@ body,
   scroll-behavior: smooth;
   font-weight: 400;
   font-size: 12px;
+  list-style: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul,
+li {
+  list-style: none;
 }
 a,
 a:visited,

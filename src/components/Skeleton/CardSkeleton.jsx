@@ -7,13 +7,15 @@ const CardSkeleton = ({ cards }) => {
       {Array(cards)
         .fill(0)
         .map((_, i) => (
-          <Col md={4} className={classes.card} key={i}>
-            <Skeleton className={classes.skeleton} />
-            <div className="d-flex flex-row justify-content-between align-items-center">
-              <Skeleton width={100} height={20} />
-              <Skeleton width={40} height={20} />
+          <Col xs={6} sm={4} lg={3} key={i}>
+            <div className={classes.card}>
+              <Skeleton className={classes.skeleton} />
+              <div className="d-flex flex-row justify-content-between align-items-center">
+                <Skeleton width={100} height={20} />
+                <Skeleton width={40} height={20} />
+              </div>
+              <Skeleton width={80} height={30} />
             </div>
-            <Skeleton width={80} height={30} />
           </Col>
         ))}
     </Row>
